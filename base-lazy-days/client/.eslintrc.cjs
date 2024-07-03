@@ -20,7 +20,7 @@ module.exports = {
     "plugin:jsx-a11y/recommended",
     "plugin:vitest/recommended",
     "plugin:testing-library/react",
-    // "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
@@ -28,10 +28,7 @@ module.exports = {
   settings: { react: { version: "18.2" } },
   plugins: ["react-refresh", "simple-import-sort"],
   rules: {
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
+    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     // we're using TypeScript here, not propTypes!
     "react/prop-types": "off",
 
