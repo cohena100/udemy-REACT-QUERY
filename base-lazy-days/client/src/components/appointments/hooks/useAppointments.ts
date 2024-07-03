@@ -78,6 +78,7 @@ export function useAppointments() {
     queryKey: [queryKeys.appointments, monthYear.year, monthYear.month],
     queryFn: () => getAppointments(monthYear.year, monthYear.month),
     select: (data) => selectFn(data, showAll),
+    refetchInterval: 60000,
   });
 
   /** ****************** END 3: useQuery  ******************************* */
