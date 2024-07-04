@@ -9,15 +9,8 @@ import { appointmentInPast, getAppointmentColor } from "./utils";
 import { useLoginData } from "@/auth/AuthContext";
 
 // determine whether this appointment can be reserved / un-reserved by logged-in user
-function isClickable(
-  userId: number | null,
-  appointmentData: AppointmentType
-): boolean {
-  return !!(
-    userId &&
-    (!appointmentData.userId || appointmentData.userId === userId) &&
-    !appointmentInPast(appointmentData)
-  );
+function isClickable(userId: number | null, appointmentData: AppointmentType): boolean {
+  return !!(userId && (!appointmentData.userId || appointmentData.userId === userId) && !appointmentInPast(appointmentData));
 }
 
 interface AppointmentProps {
@@ -36,9 +29,7 @@ export function Appointment({ appointmentData }: AppointmentProps) {
 
   // turn the lozenge into a button if it's clickable
   if (clickable) {
-    onAppointmentClick = userId
-      ? () => reserveAppointment(appointmentData)
-      : undefined;
+    onAppointmentClick = userId ? () => reserveAppointment(appointmentData) : undefined;
     hoverCss = {
       transform: "translateY(-1px)",
       boxShadow: "md",
@@ -48,15 +39,7 @@ export function Appointment({ appointmentData }: AppointmentProps) {
 
   const appointmentHour = dayjs(appointmentData.dateTime).format("h a");
   return (
-    <Box
-      borderRadius="lg"
-      px={2}
-      bgColor={bgColor}
-      color={textColor}
-      as={clickable ? "button" : "div"}
-      onClick={onAppointmentClick}
-      _hover={hoverCss}
-    >
+    <Box borderRadius="lg" px={2} bgColor={bgColor} color={textColor} as={clickable ? "button" : "div"} onClick={onAppointmentClick} _hover={hoverCss}>
       <HStack justify="space-between">
         <Text as="span" fontSize="xs">
           {appointmentHour}
