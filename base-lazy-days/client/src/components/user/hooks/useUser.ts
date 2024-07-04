@@ -22,7 +22,7 @@ export function useUser() {
   const { userId, userToken } = useLoginData();
   const { data: user } = useQuery({
     enabled: !!userId,
-    queryKey: [generateUserKey(userId, userToken)],
+    queryKey: generateUserKey(userId, userToken),
     queryFn: () => getUser(userId, userToken),
     staleTime: Infinity,
   });
