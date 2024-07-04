@@ -1,9 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
+
 import type { Appointment } from "@shared/types";
 
 import { axiosInstance, getJWTHeader } from "../../../axiosInstance";
 
 import { useLoginData } from "@/auth/AuthContext";
-import { useQuery } from "@tanstack/react-query";
 import { generateAppointmentsKey } from "@/react-query/key-factories";
 
 // for when we need a query function for useQuery
